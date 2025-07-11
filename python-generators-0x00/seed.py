@@ -33,7 +33,7 @@ def connect_to_prodev():
         connection = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='your_password',
+            password="Otam'striumph@20",
             database='ALX_prodev'
         )
         if connection.is_connected():
