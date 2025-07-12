@@ -1,7 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
 
-def stream_users(connection):
+def stream_users():
+    connection = connect_to_prodev()
     """
     Generator function to yield user data one row at a time from the user_data table.
     """
