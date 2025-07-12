@@ -27,11 +27,11 @@ if __name__ == "__main__":
     with DatabaseConnection(
         host='localhost',
         user='root',
-        password='your_password',  # Replace with your MySQL password
+        password='your_password',  
         database='ALX_prodev'
     ) as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM user_data")
+        cursor.execute("SELECT * FROM users")
         rows = cursor.fetchall()
 
         for row in rows:
