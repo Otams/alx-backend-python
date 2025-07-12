@@ -33,7 +33,7 @@ def connect_to_prodev():
         connection = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='your_password',
+            password="Otam'striumph@20",
             database='ALX_prodev'
         )
         if connection.is_connected():
@@ -66,9 +66,10 @@ def create_table(connection):
 def insert_data(connection, file_path):
     try:
         cursor = connection.cursor()
-        with open(file_path, newline='') as csvfile:
+        with open("user_data.csv", newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
+                user_id = str(uuid.uuid4())  # Generate new UUID for each user
                 cursor.execute('''
                     INSERT INTO user_data (user_id, name, email, age)
                     VALUES (%s, %s, %s, %s)
@@ -80,7 +81,13 @@ def insert_data(connection, file_path):
                     row['age']
                 ))
         connection.commit()
+
+        cursor.execute("SELECT * FROM user_data LIMIT 5;")
+        rows = cursor.fetchall()
+        print("\n Sample Inserted Rows:")
+        for row in rows:
+            print(row)
+
         cursor.close()
-        print("Data inserted successfully from CSV")
     except Error as e:
         print(f"Error inserting data: {e}")
